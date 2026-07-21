@@ -5,10 +5,19 @@ jobs:
     runs-on: macos-latest
     steps:
     - uses: actions/checkout@v3
-    - name: Build with Theos
-      uses: Randomblock1/theos-action@v1
+    - name: Install Theos
+      run: |
+        git clone --recursive https://github.com/theos/theos $HOME/theos
+        echo "THEOS=$HOME/theos" >> $GITHUB_ENV
+        sudo ln -s $HOME/theos/bin/nic.pl /usr/local/bin/nic.pl
+    - name: Build
+      run: |
+        export THEOS=$HOME/theos
+        make package
+        mkdir -p artifacts
+        cp packages/*.deb artifacts/
     - name: Upload .deb
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: NewLOL
-        path: packages/*.deb
+        path: artifacts/*.deb
