@@ -1,9 +1,0 @@
-Package: com.yourname.newlol
-Name: NewLOL
-Version: 1.0.0
-Architecture: iphoneos-arm
-Description: NewLOL Mod Menu for iOS 15.0+
-Maintainer: Your Name <email@example.com>
-Author: Your Name <email@example.com>
-Section: Tweaks
-Depends: firmware (>= 15.0)
